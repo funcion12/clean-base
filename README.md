@@ -5,7 +5,7 @@
 - Desarrollar endpoints que permitan el registro y consulta de la entidad Curso
 
 ### Evaluacion
-- Fecha de Entrega: 02/11/2024
+- Fecha de Entrega: 13/05/2025
 - El proyecto debe compilar sin errores en cualquier entorno de programación en el que se abra
 - Todos los test unitarios deben pasar en verde
 - Cada funcionalidad debe tener su branch específica, la cual partirá desde el branch develop
@@ -45,12 +45,12 @@ _Se desea implementar un backend para un microservicio que permita registrar y c
 ### Etapa 1
 Creación de casos de uso que cubran la funcionalidad, aplicando patrones y principios de diseño SOLID
 
-**Deadline: 12/10/24**
+**Deadline: 29/05/24**
 
 ### Etapa 2
 Creación de infraestructura para persistir y endpoints para comunicarse con la aplicación
 
-**Deadline: 02/11/24**
+**Deadline: 13/05/25**
 
 #### Buenas prácticas y conceptos a considerar
 - La nomenclatura de paquetes será en minúsculas
