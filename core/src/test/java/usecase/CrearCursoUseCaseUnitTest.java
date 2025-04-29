@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 
@@ -25,7 +25,7 @@ public class CrearCursoUseCaseUnitTest {
     public void crearCurso() {
 
 //      arrange
-        Curso elCurso = Curso.instancia(1234,"Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
+        Curso elCurso = Curso.instancia(UUID.randomUUID(),"Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
 
         CrearCursoUseCase crearCursoUseCase= new CrearCursoUseCase(crearCursoRepositorio);
 

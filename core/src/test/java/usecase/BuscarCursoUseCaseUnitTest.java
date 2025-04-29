@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 
@@ -26,7 +27,7 @@ public class BuscarCursoUseCaseUnitTest   {
         @Test
         public void buscarCurso() {
                 // Arrange
-                Curso elCurso = Curso.instancia(1234, "Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
+                Curso elCurso = Curso.instancia(UUID.randomUUID(), "Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
                 BuscarCursoUseCase buscarCursoUseCase = new BuscarCursoUseCase(buscarCursoRepositorio);
 
                 when(buscarCursoRepositorio.exist(elCurso.getNombre())).thenReturn(true);
