@@ -1,9 +1,13 @@
 package usecase;
 
+
+import curso.exception.CursoNoExisteException;
+import curso.exception.CursoNullOVacio;
 import curso.modelo.Curso;
 import curso.modelo.NIVELES_VALIDOS;
 import curso.output.IBuscarCursoRepositorio;
 import curso.usecase.BuscarCursoUseCase;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,18 +28,33 @@ public class BuscarCursoUseCaseUnitTest   {
         IBuscarCursoRepositorio buscarCursoRepositorio;
 
         @Test
-        public void buscarCurso() throws IllegalAccessException {
+        public void buscarCurso() throws  CursoNullOVacio, CursoNoExisteException  {
                 // Arrange
-                Curso elCurso = Curso.instancia(UUID.randomUUID(), "Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
+                String nombreCurso = "Alberto";
+                Curso elCurso = Curso.instancia(UUID.randomUUID(), nombreCurso, LocalDate.of(2023, 12, 3), NIVELES_VALIDOS.INICIAL);
                 BuscarCursoUseCase buscarCursoUseCase = new BuscarCursoUseCase(buscarCursoRepositorio);
 
-                when(buscarCursoRepositorio.exist(elCurso.getNombre())).thenReturn(true);
+                when(buscarCursoRepositorio.exist(nombreCurso)).thenReturn(true);
+                when(buscarCursoRepositorio.buscarCurso(nombreCurso)).thenReturn(elCurso);
 
                 // Act
-                boolean resultado = buscarCursoUseCase.buscarCurso(elCurso.getNombre());
-
+                Curso resultado = buscarCursoUseCase.buscarCurso(nombreCurso);
 
                 // Assert
-                Assertions.assertTrue(resultado);
+                Assertions.assertNotNull(resultado);
+                Assertions.assertEquals(nombreCurso, resultado.getNombre());
         }
+
+        @Test
+        public void buscarCurso_cursoNoExiste_CursoNoExisteException()throws  CursoNullOVacio, CursoNoExisteException  {
+                // Arrange
+                String nombreCurso = "Alberto";
+                BuscarCursoUseCase buscarCursoUseCase = new BuscarCursoUseCase(buscarCursoRepositorio);
+
+                when(buscarCursoRepositorio.exist(nombreCurso)).thenReturn(false);
+
+                // Assert + Act
+                Assertions.assertThrows(CursoNoExisteException.class, () -> buscarCursoUseCase.buscarCurso(nombreCurso));
+        }
+
 }

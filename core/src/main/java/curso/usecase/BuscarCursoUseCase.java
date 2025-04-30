@@ -1,6 +1,9 @@
 package curso.usecase;
 
+import curso.exception.CursoNoExisteException;
+import curso.exception.CursoNullOVacio;
 import curso.input.IBuscarCursoInput;
+import curso.modelo.Curso;
 import curso.output.IBuscarCursoRepositorio;
 
 public class BuscarCursoUseCase implements IBuscarCursoInput {
@@ -12,10 +15,17 @@ public class BuscarCursoUseCase implements IBuscarCursoInput {
     }
 
     @Override
-    public boolean buscarCurso(String nombreCurso) throws IllegalAccessException {
-        if (nombreCurso == null || nombreCurso.isEmpty()) {
-            throw new IllegalAccessException("El nombre del curso no puede ser nulo o vacio");
+    public Curso buscarCurso(String nombreCurso) throws CursoNullOVacio, CursoNoExisteException {
+        if (nombreCurso == null || nombreCurso.trim().isEmpty()) {
+            throw new CursoNullOVacio();
         }
-        return buscarCursoRepositorio.exist(nombreCurso);
+
+        boolean existe = buscarCursoRepositorio.exist(nombreCurso);
+        if (!existe) {
+            throw new CursoNoExisteException();
+        }
+
+        return buscarCursoRepositorio.buscarCurso(nombreCurso);
     }
+
 }
