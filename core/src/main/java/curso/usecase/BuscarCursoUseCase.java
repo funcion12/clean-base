@@ -12,9 +12,9 @@ public class BuscarCursoUseCase implements IBuscarCursoInput {
     }
 
     @Override
-    public boolean buscarCurso(String nombreCurso) {
+    public boolean buscarCurso(String nombreCurso) throws IllegalAccessException {
         if (nombreCurso == null || nombreCurso.isEmpty()) {
-            return false;
+            throw new IllegalAccessException("El nombre del curso no puede ser nulo o vacio");
         }
         return buscarCursoRepositorio.exist(nombreCurso);
     }

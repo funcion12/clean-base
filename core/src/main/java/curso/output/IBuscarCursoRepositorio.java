@@ -1,6 +1,8 @@
 package curso.output;
 
+import curso.modelo.Curso;
+
 public interface IBuscarCursoRepositorio {
     boolean exist(String nombreCurso);
-    boolean buscarCurso(String nombreCurso);
+    Curso buscarCurso(String nombreCurso);
 }

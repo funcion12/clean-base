@@ -3,7 +3,6 @@ package usecase;
 import curso.modelo.Curso;
 import curso.modelo.NIVELES_VALIDOS;
 import curso.output.IBuscarCursoRepositorio;
-import curso.usecase.CrearCursoUseCase;
 import curso.usecase.BuscarCursoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ public class BuscarCursoUseCaseUnitTest   {
         IBuscarCursoRepositorio buscarCursoRepositorio;
 
         @Test
-        public void buscarCurso() {
+        public void buscarCurso() throws IllegalAccessException {
                 // Arrange
                 Curso elCurso = Curso.instancia(UUID.randomUUID(), "Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
                 BuscarCursoUseCase buscarCursoUseCase = new BuscarCursoUseCase(buscarCursoRepositorio);
