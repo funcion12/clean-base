@@ -19,7 +19,10 @@ public class CrearCursoRepositoryImpl implements ICrearCursoRepositorio {
 
     @Override
     public boolean exist(String nombreCurso) {
-        return crearCursoCRUD.existsByNombre(nombreCurso);
+        if(nombreCurso==null || nombreCurso.isEmpty()) return false;
+        try{return crearCursoCRUD.existsByNombre(nombreCurso);
+        }catch(Exception e){return false;}
+
     }
 
     @Override
