@@ -26,7 +26,7 @@ public class CrearCursoUseCaseUnitTest {
     public void crearCurso_cursoNoExiste_CrearCurso() throws CursoExisteException {
 
 //      arrange
-        Curso elCurso = Curso.instancia(UUID.randomUUID(),"Alberto", LocalDate.of(2023,12,3), NIVELES_VALIDOS.INICIAL);
+        Curso elCurso = Curso.instancia(UUID.randomUUID(),"Alberto", LocalDate.now().plusDays(10), NIVELES_VALIDOS.INICIAL);
 
         CrearCursoUseCase crearCursoUseCase= new CrearCursoUseCase(crearCursoRepositorio);
 
@@ -47,7 +47,7 @@ public class CrearCursoUseCaseUnitTest {
     public void crearCurso_cursoExiste_CursoExisteException() {
 
 //      arrange
-        Curso elCurso = Curso.instancia(UUID.randomUUID(),"Alberto", LocalDate.of(2023,12,3)
+        Curso elCurso = Curso.instancia(UUID.randomUUID(),"Alberto", LocalDate.now().plusDays(10)
         , NIVELES_VALIDOS.INICIAL);
 
         CrearCursoUseCase crearCursoUseCase = new CrearCursoUseCase(crearCursoRepositorio);

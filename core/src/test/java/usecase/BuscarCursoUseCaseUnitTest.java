@@ -31,7 +31,7 @@ public class BuscarCursoUseCaseUnitTest   {
         public void buscarCurso() throws  CursoNullOVacio, CursoNoExisteException  {
                 // Arrange
                 String nombreCurso = "Alberto";
-                Curso elCurso = Curso.instancia(UUID.randomUUID(), nombreCurso, LocalDate.of(2023, 12, 3), NIVELES_VALIDOS.INICIAL);
+                Curso elCurso = Curso.instancia(UUID.randomUUID(), nombreCurso, LocalDate.now().plusDays(10), NIVELES_VALIDOS.INICIAL);
                 BuscarCursoUseCase buscarCursoUseCase = new BuscarCursoUseCase(buscarCursoRepositorio);
 
                 when(buscarCursoRepositorio.exist(nombreCurso)).thenReturn(true);
